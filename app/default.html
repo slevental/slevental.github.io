@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% if page.title %}{{ page.title }} &mdash; {% endif %}Your Blog</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta property="og:url" content="{{ site.url }}{{ page.url | remove_first:'index.html' }}">
+    <meta property="og:site_name" content="blog.your-domain.com">
+
+    {% if page.title %}
+    <meta property="og:title" content="{{ page.title }}">
+    {% endif %}
+
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    <meta name="og:description" content="{{ page.description }}">
+    {% else if page.excerpt %}
+    <meta name="description" content="{{ page.excerpt | strip_html | truncatewords: 25 }}">
+    <meta name="og:description" content="{{ page.excerpt | strip_html | truncatewords: 25 }}">
+    {% endif %}
+
+    {% if page.og_image_url %}
+    <meta property="og:image" content="{{ page.og_image_url }}">
+    {% else if page.photo_url %}
+    <meta property="og:image" content="{{ page.photo_url }}">
+    {% endif %}
+
+    {% if page.keywords %}
+    <meta name="keywords" content="{{ page.keywords | join: ', ' }}" />
+    {% endif %}
+
+    {% if page.date %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ page.date | date: "%Y-%m-%d" }}">
+    {% endif %}
+
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Your Blog</a>
+        </div>
+    </div><!-- /.container -->
+</nav>
+
+<div class="container">
+
+    {{ content }}
+
+</div>
+
+</body>
+</html>

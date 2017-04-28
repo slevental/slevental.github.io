@@ -1,0 +1,7 @@
+source: app
+destination: web
+
+url: http://levental.io
+permalink: pretty
+
+encoding: utf-8
